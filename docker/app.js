@@ -67,12 +67,20 @@ app.use((err, req, res, next) => {
 
 // if you're running on something other than localhost, set your valid server name to listen on here!
 io.set('origins', '*:*');
-io.sockets.on('connection', socket => {
-  socket.emit('message', 'Welcome to Revealer');
-  socket.on('slidechanged', data => {
-    socket.broadcast.emit('slidechanged', data);
+io.sockets.
+  on('connection', socket => {
+    const { id, remoteAddress, server } = socket.conn;
+    console.log('io connection made', { id, remoteAddress, numClients: server.clientsCount });
+    socket.emit('message', 'Welcome to Revealer');
+    socket.on('slidechanged', data => {
+      console.log('io slidechanged', { id, data });
+      socket.broadcast.emit('slidechanged', data);
+    });
+  })
+  .on('disconnect', socket => {
+    const { id, remoteAddress } = socket.conn;
+    console.log('client disconected', { id, remoteAddress })
   });
-});
 
 server.listen(port, '0.0.0.0', () => {
   const localAddress = `127.0.0.1:${port}`;
