@@ -1,0 +1,55 @@
+{
+  "name": "docker-talk",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "start": "node app.js",
+    "dev": "concurrently --kill-others \"npm start\" \"browser-sync start -p http://localhost:5001/ --files views\"",
+    "static-preview": "npm run build && cd docs && browser-sync start --server",
+    "clean": "rimraf docs/index.html",
+    "build": "node static-build.js",
+    "test": "concurrently --kill-others \"npm run static-preview\" \"mocha --exit\" --success first"
+  },
+  "dependencies": {
+    "body-parser": "1.18.2",
+    "cookie-parser": "1.4.3",
+    "ejs": "2.5.7",
+    "express": "4.16.2",
+    "http-auth": "3.2.3",
+    "morgan": "1.9.0",
+    "serve-favicon": "2.4.5",
+    "socket.io": "2.0.4"
+  },
+  "devDependencies": {
+    "browser-sync": "2.18.13",
+    "chai": "4.1.2",
+    "chai-files": "1.4.0",
+    "chai-http": "3.0.0",
+    "concurrently": "3.5.1",
+    "fs-extra": "5.0.0",
+    "glob": "7.1.2",
+    "mocha": "4.0.1",
+    "promisify": "0.0.3",
+    "rimraf": "2.6.2"
+  },
+  "engines": {
+    "node": ">=6.9.0",
+    "npm": ">=4.0.0"
+  },
+  "description": "A deeper look into docker internals.",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grocky/docker-talk.git"
+  },
+  "author": "grocky (https://github.com/grocky)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grocky/docker-talk/issues"
+  },
+  "homepage": "https://github.com/grocky/docker-talk#readme"
+}
