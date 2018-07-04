@@ -28,18 +28,18 @@ app
   .use(express.static(path.join(__dirname, 'public')))
   .use('/', routes);
 
-const server = http.Server(app),
-  io = socketio.listen(server),
-  port = process.env.PORT || process.env.VCAP_APP_PORT || 5001; // usual Node.js port environment, Bluemix port environment, static 5001 as local failover
+const server = http.Server(app);
+const io = socketio.listen(server);
+const port = process.env.PORT || process.env.VCAP_APP_PORT || 5001;
 
-// / catch 404 and forward to error handler
+// catch 404 and forward to error handler
 app.use((req, res, next) => {
   let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// / error handlers
+// error handlers
 
 // development error handler
 // will print stacktrace
@@ -65,7 +65,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-io.set('origins', '*:*'); // if you're running on something other than localhost, set your valid server name to listen on here!
+// if you're running on something other than localhost, set your valid server name to listen on here!
+io.set('origins', '*:*');
 io.sockets.on('connection', socket => {
   socket.emit('message', 'Welcome to Revealer');
   socket.on('slidechanged', data => {

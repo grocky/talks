@@ -1,9 +1,9 @@
 (function(){
-  var proto = window.location.protocol;
-  var h = window.location.host;
-  var val = proto+'//'+h;
+  const proto = window.location.protocol;
+  const h = window.location.host;
+  const val = proto+'//'+h;
   console.log(val);
-  var socket = io.connect(val);
+  const socket = io.connect(val);
   Reveal.initialize({
     history: true
   });
@@ -14,9 +14,9 @@
       indexv : Reveal.getIndices().v,
       indexh : Reveal.getIndices().h,
       indexf : Reveal.getIndices().f || 0
-    }
+    };
     socket.emit("slidechanged" , data);
-  }
+  };
   // listeners for slide change/ fragment change events
   Reveal.addEventListener("slidechanged", notifyServer);
   Reveal.addEventListener("fragmentshown", notifyServer);
