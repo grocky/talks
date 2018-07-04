@@ -1,0 +1,58 @@
+doctype html
+html(lang='en')
+  head
+    title Grocky Presentation
+    meta(charset='utf-8')
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    )
+    meta(
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    )
+    meta(name="description" content="grocky presentation")
+    meta(name="author" content="Rocky Gray")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+    link(rel="stylesheet" href="https://unpkg.com/reveal.js@3.6.0/css/reveal.css")
+    link#theme(rel="stylesheet" href="https://unpkg.com/reveal.js@3.6.0/css/theme/night.css")
+    link(rel="stylesheet" href="https://unpkg.com/reveal.js@3.6.0/lib/css/zenburn.css")
+    link(rel="stylesheet" href="css/custom.css")
+    script.
+      const link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'https://unpkg.com/reveal.js@3.6.0/css/print/pdf.css' : 'https://unpkg.com/reveal.js@3.6.0/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+  body
+    block content
+      include presentation
+    script(src="https://unpkg.com/headjs@1.0.3/dist/1.0.0/head.min.js")
+    script(src="https://unpkg.com/reveal.js@3.6.0/js/reveal.js")
+    script.
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+          controls: true,
+          progress: true,
+          history: true,
+          center: true,
+          fragments: true,
+
+          transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+          // Optional reveal.js plugins
+          dependencies: [
+            // { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            // Interpret Markdown in <section> elements
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/zoom-js/zoom.js', async: true },
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/notes/notes.js', async: true }
+          ]
+        });
+    script(src='/socket.io/socket.io.js')
+    block applicationScript
+      script(src='js/viewer-main.js')
