@@ -7,6 +7,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const routes = require('./routes/index');
+const opn = require('opn');
+const ip = require('ip');
 const app = express();
 
 // view engine setup
@@ -71,8 +73,13 @@ io.sockets.on('connection', socket => {
   });
 });
 
-server.listen(port, () => {
-  console.log('Express server listening on port ' + port);
+server.listen(port, '0.0.0.0', () => {
+  const localAddress = `127.0.0.1:${port}`;
+  const remoteAddress = `${ip.address()}:${port}`;
+  console.log('Express server listening on', localAddress);
+  console.log('Remote server listening on', remoteAddress);
+  console.log('Opening browser');
+  opn(`http://127.0.0.1:${port}/control`);
 });
 
 module.exports = app;
