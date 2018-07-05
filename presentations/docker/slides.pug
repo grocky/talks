@@ -1,52 +1,9 @@
 extends ../../views/index
 
 block content
-  include ../../views/mixins
-
-  +slide(data-markdown=true).
-    ## Docker Internals
-
-    #### A deeper look into docker internals.
-
-    [by grocky](https://twitter.com/RockyGJr)
-
-  +slide(data-markdown=true).
-    ## Docker basics
-
-    * Docker ecosystem
-      * Docker engine
-        * docker-machine
-        * docker for mac
-        * docker for windows
-      * docker-compose
-      * registry
-
-    * Docker artifacts
-      * images
-      * containers
-      * volumes
-      * Dockerfile
-
-  +slide(data-markdown=true).
-    ## How are images built?
-
-    * Dockerfile -> image layers
-    * image layer dependencies
-    * intermediate layers
-    * image layer caches
-
-  +slide(data-markdown=true).
-    ## Docker image data storage
-
-    ```shell
-    screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-    ```
-
-    ```shell
-    cd /var/lib/docker/overlay2
-    ```
-  +slide(data-markdown=true).
-    ## Exploring docker's filesystem
-
-    > Demo
-
+  section(
+    data-markdown='slides.md'
+    data-separator='^\\r?\\n----\\r?\\n$'
+    data-separator-vertical='^\\r?\\n--\\r?\\n$'
+    data-separator-notes='^Note:'
+  )

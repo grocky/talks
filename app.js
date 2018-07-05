@@ -13,8 +13,15 @@ const app = express();
 
 const presentation = process.argv[2];
 
+if (!presentation) {
+  console.error('Please provide the presentation to load');
+  process.exit(1);
+}
+
 console.log('Loading presentation', presentation);
-const viewPaths = [path.join(__dirname, 'presentations', presentation), path.join(__dirname, 'views')];
+const presentationDir = path.join(__dirname, 'presentations', presentation);
+
+const viewPaths = [presentationDir, path.join(__dirname, 'views')];
 
 app
   .set('views', viewPaths)
@@ -22,13 +29,10 @@ app
   .use(favicon(path.join(__dirname, '/public/img/favicon.ico')))
   .use(logger('dev'))
   .use(bodyParser.json())
-  .use(
-    bodyParser.urlencoded({
-      extended: true
-    })
-  )
+  .use(bodyParser.urlencoded({ extended: true }))
   .use(cookieParser())
   .use(express.static(path.join(__dirname, 'public')))
+  .use(express.static(presentationDir))
   .use('/', routes);
 
 const server = http.Server(app);
