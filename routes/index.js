@@ -20,12 +20,13 @@ const authMiddleware = auth.connect(basic);
 /* GET home page. */
 router.get('/', (req, res) => {
   console.log('rendering slides');
-  res.render('slides', { title: '<%= pName %>' });
+  res.render('slides', { isPresenter: false });
 });
 
 /* GET controller page. */
 router.get('/control', authMiddleware, (req, res) => {
-  res.render('control', { title: '<%= pName %> Controller' });
+  res.render('slides', { isPresenter: true });
 });
 
 module.exports = router;
+

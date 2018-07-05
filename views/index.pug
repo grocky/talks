@@ -57,5 +57,9 @@ html(lang='en')
           ]
         });
     script(src='/socket.io/socket.io.js')
-    block applicationScript
-      script(src='js/viewer-main.js')
+
+    if isPresenter
+      script(src='/js/controller-main.js')
+    else
+      script(src='/js/viewer-main.js')
+
