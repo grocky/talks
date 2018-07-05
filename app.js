@@ -11,10 +11,13 @@ const opn = require('opn');
 const ip = require('ip');
 const app = express();
 
-// view engine setup
+const presentation = process.argv[2];
+
+console.log('Loading presentation', presentation);
+const viewPaths = [path.join(__dirname, presentation), path.join(__dirname, 'views')];
 
 app
-  .set('views', path.join(__dirname, 'views'))
+  .set('views', viewPaths)
   .set('view engine', 'pug')
   .use(favicon(path.join(__dirname, '/public/img/favicon.ico')))
   .use(logger('dev'))

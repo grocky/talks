@@ -19,7 +19,8 @@ const authMiddleware = auth.connect(basic);
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.render('index', { title: '<%= pName %>' });
+  console.log('rendering slides');
+  res.render('slides', { title: '<%= pName %>' });
 });
 
 /* GET controller page. */
