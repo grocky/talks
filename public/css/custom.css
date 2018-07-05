@@ -31,3 +31,6 @@
 .right {
 	float: right;
 }
+.error {
+  font-size: .5em;
+}

@@ -14,7 +14,7 @@ const app = express();
 const presentation = process.argv[2];
 
 console.log('Loading presentation', presentation);
-const viewPaths = [path.join(__dirname, presentation), path.join(__dirname, 'views')];
+const viewPaths = [path.join(__dirname, 'presentations', presentation), path.join(__dirname, 'views')];
 
 app
   .set('views', viewPaths)
