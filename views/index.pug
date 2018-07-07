@@ -14,7 +14,7 @@ html(lang='en')
     )
     meta(name='description' content='grocky presentation')
     meta(name='author' content='Rocky Gray')
-    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet' href='css/font-awesome.min.css')
     link(rel='stylesheet' href='css/reveal.css')
     link#theme(rel='stylesheet' href='css/theme/night.css')
     link(rel='stylesheet' href='lib/css/zenburn.css')
@@ -30,24 +30,19 @@ html(lang='en')
       .slides
         block content
           include default-slides
-    script(src='https://unpkg.com/headjs@1.0.3/dist/1.0.0/head.min.js')
+    script(src='head.min.js')
     script(src='js/reveal.js')
     script.
-        // Full list of configuration options available at:
-        // https://github.com/hakimel/reveal.js#configuration
         Reveal.initialize({
           controls: true,
           progress: true,
           history: true,
           center: true,
           fragments: true,
-
-          transition: 'slide', // none/fade/slide/convex/concave/zoom
-
+          // none/fade/slide/convex/concave/zoom
+          transition: 'slide',
           // Optional reveal.js plugins
           dependencies: [
-            // { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-            // Interpret Markdown in <section> elements
             { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
             { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
             { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
@@ -61,4 +56,3 @@ html(lang='en')
       script(src='/js/controller-main.js')
     else
       script(src='/js/viewer-main.js')
-

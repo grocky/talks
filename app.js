@@ -33,6 +33,8 @@ app
   .use(cookieParser())
   .use(express.static(path.join(__dirname, 'public')))
   .use(express.static(presentationDir))
+  .use(express.static('node_modules/headjs/dist/1.0.0'))
+  .use(express.static('node_modules/font-awesome'))
   .use(express.static('node_modules/reveal.js'))
   .use('/', routes);
 
