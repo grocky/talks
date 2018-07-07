@@ -33,6 +33,7 @@ app
   .use(cookieParser())
   .use(express.static(path.join(__dirname, 'public')))
   .use(express.static(presentationDir))
+  .use(express.static('node_modules/reveal.js'))
   .use('/', routes);
 
 const server = http.Server(app);

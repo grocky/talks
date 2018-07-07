@@ -43,7 +43,6 @@ cd /var/lib/docker/overlay2
 
 ----
 
-
 ## Exploring docker's filesystem
 
 > Demo
